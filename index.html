@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>华星 CSCA — Ace the Exam</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700;900&family=DM+Sans:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- SIDEBAR -->
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <span class="logo-char">华</span>
+      <span class="logo-text">CSCA<span class="logo-sub">星</span></span>
+    </div>
+
+    <div class="streak-card" id="sidebar-streak">
+      <div class="streak-flame">🔥</div>
+      <div class="streak-info">
+        <div class="streak-num" id="streak-count">0</div>
+        <div class="streak-label">day streak</div>
+      </div>
+      <div class="streak-xp" id="sidebar-xp">0 XP</div>
+    </div>
+
+    <ul class="nav-links">
+      <li><a href="#" class="nav-link active" data-page="dashboard"><span class="nav-icon">🏠</span>Dashboard</a></li>
+      <li><a href="#" class="nav-link" data-page="lessons"><span class="nav-icon">📚</span>Lessons</a></li>
+      <li><a href="#" class="nav-link" data-page="flashcards"><span class="nav-icon">🃏</span>Flashcards</a></li>
+      <li><a href="#" class="nav-link" data-page="vocab"><span class="nav-icon">🀄</span>Chinese Vocab</a></li>
+      <li><a href="#" class="nav-link" data-page="practice"><span class="nav-icon">📝</span>Practice Tests</a></li>
+      <li><a href="#" class="nav-link" data-page="notes"><span class="nav-icon">📓</span>Study Notes</a></li>
+      <li><a href="#" class="nav-link" data-page="reminders"><span class="nav-icon">📱</span>SMS Reminders</a></li>
+    </ul>
+
+    <div class="sidebar-bottom">
+      <div class="level-badge" id="sidebar-level">Level 1</div>
+      <div class="xp-bar-wrap">
+        <div class="xp-bar" id="xp-bar-fill" style="width:0%"></div>
+      </div>
+      <div class="xp-label" id="xp-label-bottom">0 / 100 XP to next level</div>
+    </div>
+  </nav>
+
+  <!-- HAMBURGER -->
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">☰</button>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content" id="main-content">
+
+    <!-- ===== DASHBOARD ===== -->
+    <section class="page active" id="page-dashboard">
+      <div class="page-header">
+        <h1 class="page-title">你好！Ready to conquer the CSCA? <span class="wave">👋</span></h1>
+        <p class="page-subtitle">Every character you learn is a step closer to Tsinghua.</p>
+      </div>
+
+      <div class="daily-motivation" id="daily-motivation">
+        <div class="motivation-text" id="motivation-text">Loading your daily push...</div>
+        <div class="motivation-sub">Your daily kick in the pants 🔥</div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card pink">
+          <div class="stat-num" id="stat-streak">0</div>
+          <div class="stat-label">Day Streak 🔥</div>
+        </div>
+        <div class="stat-card blue">
+          <div class="stat-num" id="stat-xp">0</div>
+          <div class="stat-label">Total XP ⚡</div>
+        </div>
+        <div class="stat-card green">
+          <div class="stat-num" id="stat-cards">0</div>
+          <div class="stat-label">Cards Mastered 🃏</div>
+        </div>
+        <div class="stat-card yellow">
+          <div class="stat-num" id="stat-tests">0</div>
+          <div class="stat-label">Tests Completed 📝</div>
+        </div>
+      </div>
+
+      <div class="section-title">📚 Today's Recommended Topics</div>
+      <div class="topic-cards" id="topic-cards"></div>
+
+      <div class="section-title">🗓️ Your Study Calendar</div>
+      <div class="calendar-strip" id="calendar-strip"></div>
+
+      <div class="section-title">🏆 Progress by Section</div>
+      <div class="progress-section" id="progress-section"></div>
+    </section>
+
+    <!-- ===== LESSONS ===== -->
+    <section class="page" id="page-lessons">
+      <div class="page-header">
+        <h1 class="page-title">📚 Lessons</h1>
+        <p class="page-subtitle">Master every CSCA topic with structured, detailed lessons.</p>
+      </div>
+      <div class="lesson-filter" id="lesson-filter"></div>
+      <div class="lessons-grid" id="lessons-grid"></div>
+      <div class="lesson-viewer" id="lesson-viewer" style="display:none"></div>
+    </section>
+
+    <!-- ===== FLASHCARDS ===== -->
+    <section class="page" id="page-flashcards">
+      <div class="page-header">
+        <h1 class="page-title">🃏 Flashcards</h1>
+        <p class="page-subtitle">Spaced repetition to burn knowledge into your brain.</p>
+      </div>
+      <div class="flashcard-controls" id="flashcard-controls"></div>
+      <div class="flashcard-arena" id="flashcard-arena"></div>
+    </section>
+
+    <!-- ===== CHINESE VOCAB ===== -->
+    <section class="page" id="page-vocab">
+      <div class="page-header">
+        <h1 class="page-title">🀄 Chinese Vocabulary</h1>
+        <p class="page-subtitle">Essential characters & phrases for the CSCA Chinese section.</p>
+      </div>
+      <div class="vocab-tabs" id="vocab-tabs">
+        <button class="vtab active" data-vtab="browse">Browse All</button>
+        <button class="vtab" data-vtab="flashcards">Flashcard Mode</button>
+        <button class="vtab" data-vtab="quiz">Quick Quiz</button>
+        <button class="vtab" data-vtab="notes">Vocab Notes</button>
+      </div>
+      <div class="vocab-content" id="vocab-content"></div>
+    </section>
+
+    <!-- ===== PRACTICE TESTS ===== -->
+    <section class="page" id="page-practice">
+      <div class="page-header">
+        <h1 class="page-title">📝 Practice Tests</h1>
+        <p class="page-subtitle">AI-generated tests that replicate the real CSCA. No shortcuts.</p>
+      </div>
+      <div class="practice-hub" id="practice-hub"></div>
+    </section>
+
+    <!-- ===== NOTES ===== -->
+    <section class="page" id="page-notes">
+      <div class="page-header">
+        <h1 class="page-title">📓 Study Notes</h1>
+        <p class="page-subtitle">Comprehensive notes for every CSCA topic. Print. Annotate. Destroy the exam.</p>
+      </div>
+      <div class="notes-container" id="notes-container"></div>
+    </section>
+
+    <!-- ===== SMS REMINDERS ===== -->
+    <section class="page" id="page-reminders">
+      <div class="page-header">
+        <h1 class="page-title">📱 SMS Study Reminders</h1>
+        <p class="page-subtitle">Get toxic motivation delivered straight to your phone. You asked for it.</p>
+      </div>
+      <div class="reminders-container" id="reminders-container"></div>
+    </section>
+
+  </main>
+
+  <div class="overlay" id="overlay"></div>
+  <div class="toast-container" id="toast-container"></div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
